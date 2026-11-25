@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <!-- 1) QR mərhələsi -->
+    <ScrollView
+        android:id="@+id/pairingPanel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/viewer_title"
+                android:textColor="@color/text"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/viewer_subtitle"
+                android:textColor="@color/muted"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/qrImage"
+                android:layout_width="260dp"
+                android:layout_height="260dp"
+                android:layout_marginTop="20dp"
+                android:background="#FFFFFF"
+                android:contentDescription="@string/scan_qr"
+                android:padding="8dp" />
+
+            <TextView
+                android:id="@+id/qrStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="monospace"
+                android:gravity="center"
+                android:textColor="@color/muted"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/viewer_steps"
+                android:textColor="@color/text"
+                android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/newQrBtn"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/btn_outline"
+                android:text="@string/new_qr"
+                android:textAllCaps="false"
+                android:textColor="@color/text" />
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- 2) Görüntü mərhələsi -->
+    <LinearLayout
+        android:id="@+id/videoPanel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000000"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="#17191E"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="10dp"
+            android:paddingEnd="4dp">
+
+            <TextView
+                android:id="@+id/permStatus"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="#9298A6"
+                android:textSize="12sp" />
+
+            <Button android:id="@+id/keyBack" style="@style/ViewerKey" android:text="◀" android:contentDescription="@string/key_back" />
+            <Button android:id="@+id/keyHome" style="@style/ViewerKey" android:text="●" android:contentDescription="@string/key_home" />
+            <Button android:id="@+id/keyRecents" style="@style/ViewerKey" android:text="■" android:contentDescription="@string/key_recents" />
+            <Button android:id="@+id/keyKeyboard" style="@style/ViewerKey" android:text="⌨" android:contentDescription="@string/key_keyboard" />
+            <Button android:id="@+id/keyMore" style="@style/ViewerKey" android:text="⋯" android:contentDescription="@string/key_more" />
+            <Button android:id="@+id/keyClose" style="@style/ViewerKey" android:text="✕" android:contentDescription="@string/key_close" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/extraRow"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="#17191E"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <Button android:id="@+id/keyMute" style="@style/ViewerKey" android:text="🔈" android:contentDescription="@string/key_mute" />
+            <Button android:id="@+id/keyVolDown" style="@style/ViewerKey" android:text="－" android:contentDescription="@string/key_vol_down" />
+            <Button android:id="@+id/keyVolUp" style="@style/ViewerKey" android:text="＋" android:contentDescription="@string/key_vol_up" />
+            <Button android:id="@+id/keyRinger" style="@style/ViewerKey" android:text="🔔" android:contentDescription="@string/key_ringer" />
+            <Button android:id="@+id/keyQuick" style="@style/ViewerKey" android:text="⚙" android:contentDescription="@string/key_quick" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/videoContainer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <SurfaceView
+                android:id="@+id/surface"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center" />
+
+            <TextView
+                android:id="@+id/videoOverlay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#E60E0F12"
+                android:gravity="center"
+                android:padding="24dp"
+                android:textColor="#E8EAEF"
+                android:textSize="15sp" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/textRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#17191E"
+            android:orientation="horizontal"
+            android:padding="6dp"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/textInput"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/viewer_type_hint"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:textColor="#E8EAEF"
+                android:textColorHint="#9298A6" />
+
+            <Button
+                android:id="@+id/textSend"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:background="@drawable/btn_primary"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="@string/viewer_send"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

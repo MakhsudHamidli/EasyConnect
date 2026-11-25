@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="az">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EasyConnect</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 32 32" aria-hidden="true">
+        <rect x="3" y="6" width="17" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M8 22h7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <rect x="21" y="10" width="8" height="15" rx="2" fill="var(--accent)" />
+      </svg>
+      <span>EasyConnect</span>
+    </div>
+    <div class="topbar-right">
+      <div id="toolsStatus" class="pill muted" data-i18n="tools.checking">Yoxlanılır…</div>
+      <select id="langSelect" class="lang-select" aria-label="Language">
+        <option value="az">AZ</option>
+        <option value="ru">RU</option>
+        <option value="en">EN</option>
+      </select>
+    </div>
+  </header>
+
+  <div id="toolsError" class="banner error" hidden></div>
+
+  <main class="layout">
+    <section class="panel devices-panel">
+      <div class="panel-head">
+        <h2 data-i18n="devices.title">Cihazlar</h2>
+        <span id="deviceCount" class="muted small"></span>
+      </div>
+      <div id="deviceList" class="device-list" aria-live="polite"></div>
+
+      <div class="options">
+        <h3 data-i18n="mode.title">Ekran rejimi</h3>
+        <div class="segmented" id="presetGroup" role="radiogroup">
+          <button data-preset="standard" role="radio" data-i18n="preset.standard">Standart</button>
+          <button data-preset="gaming" role="radio" data-i18n="preset.gaming">Oyun</button>
+          <button data-preset="presentation" role="radio" data-i18n="preset.presentation">Təqdimat</button>
+          <button data-preset="lowbw" role="radio" data-i18n="preset.lowbw">Zəif Wi-Fi</button>
+          <button data-preset="camera" role="radio" data-i18n="preset.camera">Kamera</button>
+        </div>
+        <p id="presetHint" class="muted small"></p>
+        <div class="toggles">
+          <label><input type="checkbox" data-opt="screenOff" /> <span data-i18n="opt.screenOff"></span></label>
+          <label><input type="checkbox" data-opt="stayAwake" /> <span data-i18n="opt.stayAwake"></span></label>
+          <label><input type="checkbox" data-opt="alwaysOnTop" /> <span data-i18n="opt.alwaysOnTop"></span></label>
+          <label><input type="checkbox" data-opt="fullscreen" /> <span data-i18n="opt.fullscreen"></span></label>
+          <label><input type="checkbox" data-opt="noAudio" /> <span data-i18n="opt.noAudio"></span></label>
+          <label><input type="checkbox" data-opt="record" /> <span data-i18n="opt.record"></span></label>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel add-panel">
+      <div class="panel-head"><h2 data-i18n="add.title">Cihaz əlavə et</h2></div>
+      <!-- İki rejim: tətbiqlə (developer mode-suz) və developer mode (scrcpy) -->
+      <div class="mode-switch" role="tablist">
+        <button role="tab" data-mode="app" class="active">
+          <b data-i18n="group.app"></b><small data-i18n="mode.appSub"></small>
+        </button>
+        <button role="tab" data-mode="dev">
+          <b data-i18n="group.dev"></b><small data-i18n="mode.devSub"></small>
+        </button>
+      </div>
+      <div class="tabs" id="devTabs" role="tablist" hidden>
+        <button role="tab" data-tab="qr" data-i18n="tab.qr">QR kod</button>
+        <button role="tab" data-tab="code" data-i18n="tab.code">Kod ilə</button>
+        <button role="tab" data-tab="ip" data-i18n="tab.ip">IP ilə</button>
+        <button role="tab" data-tab="usb" data-i18n="tab.usb">USB</button>
+      </div>
+
+      <div class="tab-body" data-body="app">
+        <div class="qr-box">
+          <div id="appQrImage" class="qr-image"><span class="muted" data-i18n="qr.preparing"></span></div>
+          <div id="appQrStatus" class="qr-status"></div>
+          <button id="appQrRefresh" class="btn ghost small-btn" data-i18n="qr.new">Yeni QR</button>
+        </div>
+        <ol class="steps" data-i18n-html="app.steps"></ol>
+        <p class="muted small" data-i18n="app.note"></p>
+      </div>
+
+      <div class="tab-body" data-body="qr" hidden>
+        <div class="qr-box">
+          <div id="qrImage" class="qr-image"><span class="muted" data-i18n="qr.preparing"></span></div>
+          <div id="qrStatus" class="qr-status"></div>
+          <button id="qrRefresh" class="btn ghost small-btn" data-i18n="qr.new">Yeni QR</button>
+        </div>
+        <ol class="steps" data-i18n-html="qr.steps"></ol>
+        <p class="muted small" data-i18n="qr.note"></p>
+      </div>
+
+      <div class="tab-body" data-body="code" hidden>
+        <ol class="steps" data-i18n-html="code.steps"></ol>
+        <form id="codeForm" class="form">
+          <label><span data-i18n="code.addr"></span><input name="host" placeholder="192.168.1.5:37123" required autocomplete="off" /></label>
+          <label><span data-i18n="code.code"></span><input name="code" placeholder="123456" inputmode="numeric" maxlength="6" required autocomplete="off" /></label>
+          <button class="btn primary" type="submit" data-i18n="btn.connect">Qoşul</button>
+        </form>
+      </div>
+
+      <div class="tab-body" data-body="ip" hidden>
+        <p class="muted small" data-i18n-html="ip.hint"></p>
+        <form id="ipForm" class="form">
+          <label><span data-i18n="ip.addr"></span><input name="address" placeholder="192.168.1.5:41235" required autocomplete="off" /></label>
+          <button class="btn primary" type="submit" data-i18n="btn.connect">Qoşul</button>
+        </form>
+      </div>
+
+      <div class="tab-body" data-body="usb" hidden>
+        <ol class="steps" data-i18n-html="usb.steps"></ol>
+        <p class="muted small" data-i18n-html="usb.xiaomi"></p>
+        <p class="muted small"><span data-i18n="usb.driver"></span> <a href="#" id="driverLink" data-i18n="usb.driverLink"></a></p>
+      </div>
+
+      <div class="saved">
+        <h3 data-i18n="saved.title">Yadda saxlanmış Wi-Fi cihazları</h3>
+        <div id="savedList"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toasts" class="toasts" aria-live="assertive"></div>
+  <script src="i18n.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

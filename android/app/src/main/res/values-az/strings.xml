@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">EasyConnect</string>
+    <string name="tagline">Telefon ekranını təhlükəsiz paylaş və ya başqa ekrana bax</string>
+    <string name="scan_qr">Ekranımı paylaş — QR skan et</string>
+    <string name="view_other_phone">Başqa telefonun ekranına bax</string>
+    <string name="scan_prompt">Kompüterdəki və ya digər telefondakı EasyConnect QR kodunu skan edin</string>
+    <string name="idle_title">Hazırdır</string>
+    <string name="idle_text">Ekranı paylaşmaq üçün kompüterdə (EasyConnect → "Tətbiqlə") və ya digər telefonda ("Başqa telefonun ekranına bax") göstərilən QR-ı skan edin.</string>
+    <string name="cancel">Ləğv et</string>
+    <string name="share_cancelled">Paylaşım ləğv edildi.</string>
+    <string name="stop_current_first">Əvvəlcə cari paylaşımı dayandırın.</string>
+
+    <!-- Razılıq -->
+    <string name="consent_title">Ekranı paylaşmaq istəyirsiniz?</string>
+    <string name="consent_details">%1$s · kod %2$s</string>
+    <string name="consent_allow">İcazə ver</string>
+    <string name="consent_deny">İmtina et</string>
+    <string name="perms_choose">NƏYƏ İCAZƏ VERİRSİNİZ?</string>
+    <string name="perms_live_title">İCAZƏLƏR (istənilən an dəyişə bilərsiniz)</string>
+    <string name="perm_view">Ekrana baxmaq</string>
+    <string name="perm_control">Telefonu idarə etmək (toxunuş, sürüşdürmə, geri/ana ekran)</string>
+    <string name="perm_keyboard">Klaviatura ilə yazmaq (parol sahələri istisna)</string>
+    <string name="always_protected">HƏR ZAMAN QORUNUR</string>
+    <string name="consent_point_secure">Bank, ödəniş və parol tətbiqləri açılanda görüntü dayanır və idarə bloklanır. Yalnız siz bu telefonda icazə verə bilərsiniz.</string>
+    <string name="consent_point_data">Fayl, şəkil, mesaj, kontakt və parollar götürülə bilməz. Ayarlar, icazə ekranları və bu tətbiq uzaqdan idarə edilə bilməz.</string>
+    <string name="consent_point_lock">Telefon kilidlənəndə paylaşım dayanır; kilid ekranı göstərilmir.</string>
+    <string name="consent_point_stop">İstədiyiniz an bildirişdən dayandıra və ya fasilə verə bilərsiniz.</string>
+    <string name="consent_point_encrypt">Əlaqə şifrələnir və yalnız bu cihaza gedir.</string>
+
+    <!-- Accessibility -->
+    <string name="a11y_description">EasyConnect: yalnız siz icazə verdiyiniz paylaşım zamanı qarşı tərəfin toxunuş və mətnlərini bu telefonda icra edir. Bank və digər qorunan tətbiqləri tanıyıb gizlədir. Ekran məzmununu oxumur və heç yerə göndərmir.</string>
+    <string name="a11y_needed">İdarə üçün "EasyConnect" xidmətini Accessibility ayarlarında yandırmaq lazımdır.</string>
+    <string name="a11y_open">Ayarları aç</string>
+    <string name="a11y_view_only">Yalnız baxışla davam et</string>
+    <string name="a11y_dialog_title">İdarə xidmətini yandırın</string>
+    <string name="a11y_dialog_text">Uzaqdan idarə üçün Android-də EasyConnect xidmətini bir dəfə yandırmaq lazımdır:\n\n1. Ayarlar → Accessibility (Əlçatanlıq) → Yüklənmiş tətbiqlər → EasyConnect\n2. Yandırın və təsdiqləyin.\n\nDüymə boz/bağlıdırsa (tətbiq Play Store-dan deyil): Ayarlar → Tətbiqlər → EasyConnect → sağ yuxarı ⋮ → "Məhdud ayarlara icazə ver", sonra yenidən cəhd edin.\n\nXidmət yalnız siz icazə verdiyiniz paylaşım zamanı işləyir.</string>
+
+    <!-- Vəziyyət -->
+    <string name="status_connecting">Qoşulur…</string>
+    <string name="status_connecting_text">%1$s ilə şifrələnmiş əlaqə qurulur.</string>
+    <string name="status_sharing">Ekran paylaşılır</string>
+    <string name="status_sharing_text">%1$s ekranınızı görür (yalnız baxış).</string>
+    <string name="status_sharing_control_text">%1$s ekranınızı görür və idarə edə bilər.</string>
+    <string name="status_paused">Fasilədədir</string>
+    <string name="status_failed">Alınmadı</string>
+    <string name="status_ended">Paylaşım bitdi</string>
+
+    <string name="stop_sharing">Paylaşımı dayandır</string>
+    <string name="pause_sharing">Fasilə</string>
+    <string name="resume_sharing">Davam et</string>
+
+    <!-- Bildirişlər -->
+    <string name="notif_channel">Ekran paylaşımı</string>
+    <string name="notif_channel_protected">Qorunan tətbiqlər</string>
+    <string name="notif_title">Ekranınız paylaşılır</string>
+    <string name="notif_text">%1$s ekranınızı görür (yalnız baxış).</string>
+    <string name="notif_text_control">%1$s ekranınızı görür və idarə edə bilər.</string>
+    <string name="notif_paused">Fasilədədir — %1$s heç nə görmür.</string>
+    <string name="protected_title">%1$s gizlədildi</string>
+    <string name="protected_text">Bu qorunan tətbiqdir. %1$s onu görmür və idarə edə bilmir. Göstərmək istəyirsiniz? (İdarə yenə bloklu qalacaq.)</string>
+    <string name="protected_remote_title">%1$s uzaqdan açılmağa cəhd edildi</string>
+    <string name="protected_remote_text">%1$s qorunan tətbiqi açmağa çalışdı. Tətbiq bağlandı və heç nə göstərilmədi.</string>
+    <string name="protected_show">Bu dəfə göstər</string>
+    <string name="protected_keep">Gizli saxla</string>
+
+    <!-- Qorunan tətbiqlər -->
+    <string name="protected_apps_title">Qorunan tətbiqlər</string>
+    <string name="protected_apps_hint">İşarələnmiş tətbiqlər paylaşım zamanı açılanda görüntü dayanır və idarə bloklanır. Bank və ödəniş tətbiqləri avtomatik işarələnib. (Accessibility xidməti yandırılmalıdır.)</string>
+
+    <!-- Görüntüləyici -->
+    <string name="viewer_title">Başqa telefonun ekranına bax</string>
+    <string name="viewer_subtitle">Bu QR-ı digər telefonda EasyConnect ilə skan edin.</string>
+    <string name="viewer_steps">1. Hər iki telefon eyni Wi-Fi-da olsun (və ya biri digərinin hotspotuna qoşulsun).\n2. Digər telefonda: EasyConnect → "Ekranımı paylaş — QR skan et".\n3. O telefonun sahibi nəyə icazə verəcəyini seçir.</string>
+    <string name="viewer_qr_status">kod %1$s · %2$s</string>
+    <string name="viewer_no_network">Telefon heç bir lokal şəbəkəyə qoşulu deyil. Wi-Fi-a qoşulun və ya hotspotu yandırın, sonra "Yeni QR" basın.</string>
+    <string name="viewer_server_failed">Server başladıla bilmədi: %1$s</string>
+    <string name="new_qr">Yeni QR</string>
+    <string name="viewer_waiting">%1$s qoşuldu. Görüntü gözlənilir…</string>
+    <string name="viewer_locked">Telefon kilidlənib — kilid ekranı göstərilmir.</string>
+    <string name="viewer_protected">Qorunan tətbiq açıqdır (məs. bank). Telefon sahibinin icazəsi olmadan göstərilmir.</string>
+    <string name="viewer_paused">Paylaşım fasilədədir.</string>
+    <string name="viewer_ended">Paylaşım bitdi.</string>
+    <string name="viewer_type_hint">Mətn yazın…</string>
+    <string name="viewer_send">Göndər</string>
+    <string name="perm_view_only">Yalnız baxış</string>
+    <string name="perm_control_keyboard">İdarə + klaviatura aktivdir</string>
+    <string name="perm_control_only">İdarə aktivdir</string>
+    <string name="perm_keyboard_only">Yalnız klaviatura</string>
+    <string name="perm_not_ready">İdarəyə icazə var, amma o telefonda xidmət yandırılmayıb</string>
+    <string name="perm_blocked_protected">Qorunan tətbiq — idarə bloklanıb</string>
+    <string name="perm_blocked_system">Ayarlar/icazə ekranı — idarə bloklanıb</string>
+    <string name="perm_blocked_locked">Telefon kilidlidir</string>
+    <string name="perm_blocked_other">İdarə müvəqqəti bloklanıb</string>
+    <!-- Link / əlaqə səhvləri -->
+    <string name="link_not_easyconnect">Bu EasyConnect QR kodu deyil.</string>
+    <string name="link_version">Bu QR kodu tətbiqin başqa versiyası üçündür. Tətbiqi yeniləyin.</string>
+    <string name="link_no_host">QR kodunda ünvan yoxdur.</string>
+    <string name="link_not_local">Təhlükəsizlik: yalnız lokal şəbəkədəki cihaza qoşulmaq olar.</string>
+    <string name="link_bad_port">QR kodunda port səhvdir.</string>
+    <string name="link_damaged">QR kodu zədələnib.</string>
+    <string name="share_no_permission">Ekran paylaşımına icazə alınmadı.</string>
+    <string name="share_qr_expired">QR kodunun vaxtı keçib və ya artıq istifadə olunub. Yeni QR yaradıb yenidən skan edin.</string>
+    <string name="share_lost">Əlaqə kəsildi.</string>
+    <string name="share_encoder_error">Video kodlayıcıda xəta: %1$s</string>
+    <string name="share_remote_closed">Qarşı tərəf paylaşımı bağladı.</string>
+    <string name="share_stopped">Paylaşım dayandırıldı.</string>
+    <string name="pause_locked">Telefon kilidlidir — görüntü göndərilmir.</string>
+    <string name="pause_protected">Qorunan tətbiq açıqdır — görüntü gizlədilib.</string>
+    <string name="pause_user">Fasilədədir — qarşı tərəf heç nə görmür.</string>
+    <string name="err_identity">Təhlükəsizlik: qarşı tərəfin kimliyi QR kodla uyğun gəlmir, qoşulmadıq. QR-ı yalnız öz cihazınızdan skan edin.</string>
+    <string name="err_tls">Şifrələnmiş əlaqə qurula bilmədi. Yeni QR yaradın.</string>
+    <string name="err_unreachable">Qoşulmaq olmadı (%1$s). Qarşı tərəf şəbəkəni dəyişibsə, yeni QR yaradıb yenidən skan edin. Hər iki cihaz eyni Wi-Fi-da (və ya hotspotda) olmalıdır.</string>
+    <string name="err_generic">Əlaqə xətası: %1$s</string>
+    <string name="remote_party">Qarşı tərəf</string>
+    <string name="key_back">Geri</string>
+    <string name="key_home">Ana ekran</string>
+    <string name="key_recents">Son tətbiqlər</string>
+    <string name="key_keyboard">Klaviatura</string>
+    <string name="key_close">Bağla</string>
+    <string name="language">Dil</string>
+    <string name="lite_note">Bu versiya yalnız baxış üçündür. Telefonu kompüterdən idarə etmək üçün Developer mode (scrcpy) və ya EasyConnect-in Google Play versiyasından istifadə edin.</string>
+    <string name="consent_point_secure_lite">Bank və ödəniş tətbiqləri öz ekranlarını gizlədir (qara görünür). Bu versiyada uzaqdan heç nə idarə edilə bilməz.</string>
+    <string name="perm_audio">Telefonun səsi (musiqi, video, oyun — mikrofon YOX)</string>
+    <string name="perm_files">Fayl göndərmək və qəbul etmək (Downloads/EasyConnect)</string>
+    <string name="perms_title">İcazələr</string>
+    <string name="perms_live_hint">Qarşı tərəfin nə edə biləcəyini dəyişin. Bu ekran uzaqdan idarə edilə bilməz.</string>
+    <string name="perms_change">İcazələri dəyiş</string>
+    <string name="files_send">Qarşı tərəfə fayl göndər</string>
+    <string name="files_sending">%1$d fayl göndərilir…</string>
+    <string name="files_not_allowed">Bu sessiyada fayl ötürməyə icazə verilməyib.</string>
+    <string name="files_request_title">%1$s fayl istəyir</string>
+    <string name="files_request_text">Hansı faylı göndərəcəyinizi seçmək üçün toxunun.</string>
+    <string name="files_received_title">Fayl qəbul edildi</string>
+    <string name="files_received_text">%1$s → Downloads/EasyConnect</string>
+    <string name="key_more">Daha çox</string>
+    <string name="key_mute">Səsi bağla</string>
+    <string name="key_vol_down">Səsi azalt</string>
+    <string name="key_vol_up">Səsi artır</string>
+    <string name="key_ringer">Zəng rejimi</string>
+    <string name="key_quick">Sürətli ayarlar</string>
+</resources>

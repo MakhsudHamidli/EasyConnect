@@ -1,0 +1,17 @@
+node_modules/
+src-tauri/target/
+src-tauri/gen/schemas/
+dist/
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+src-tauri/resources/scrcpy/macos/*
+!src-tauri/resources/scrcpy/macos/.gitkeep
+
+# IDE / OS
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db

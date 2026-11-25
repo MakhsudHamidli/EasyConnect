@@ -1,0 +1,9 @@
+* text=auto
+*.sh text eol=lf
+gradlew text eol=lf
+*.dll binary
+*.exe binary
+*.png binary
+*.ico binary
+*.icns binary
+scrcpy-server binary

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Yalnız lokal şəbəkədə kompüterə qoşulmaq üçün -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Ekran paylaşımı fon xidməti (Android 14+ tələb edir) -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" />
+    <!-- "Ekranınız paylaşılır" bildirişi -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- Tətbiq daxilində QR skan etmək üçün (yalnız skan zamanı) -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <!-- Yalnız telefonun ÇALINAN səsini ötürmək üçün (AudioPlaybackCapture). Mikrofon yazılmır.
+         Sahib "Səs" seçməsə, icazə istənmir. -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- Fayl qəbulu: Android 9 və köhnə versiyalarda tətbiqin öz qovluğuna yazılır, icazə lazım deyil. -->
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <!-- Razılıq ekranının üstünə başqa tətbiqlərin pəncərəsi çıxmasın (Android 12+) -->
+    <uses-permission android:name="android.permission.HIDE_OVERLAY_WINDOWS" />
+
+    <!--
+      Bilərəkdən YOXDUR: SYSTEM_ALERT_WINDOW, QUERY_ALL_PACKAGES, fayl/kontakt/SMS/mikrofon.
+      Accessibility xidməti (ControlService) yalnız "full" versiyadadır (src/full), sahib onu özü yandırmalıdır və
+      hər əmr SessionPolicy tərəfindən yoxlanılır.
+    -->
+
+    <!-- Yalnız ana ekrandakı tətbiqlərin siyahısı ("Qorunan tətbiqlər" seçimi üçün) -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent>
+    </queries>
+
+    <application
+        android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="false"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:usesCleartextTraffic="false"
+        android:localeConfig="@xml/locales_config"
+        android:theme="@style/Theme.EasyConnect">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <!-- Telefonun öz kamerası QR-ı oxuyanda bu link tətbiqi açır.
+                 Link yalnız razılıq ekranını göstərir, heç nəyi avtomatik başlatmır. -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="easyconnect" android:host="pair" />
+            </intent-filter>
+        </activity>
+
+        <!-- QR skaner həm portret, həm albom rejimində işləsin -->
+        <activity
+            android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="fullSensor"
+            tools:replace="screenOrientation" />
+
+        <activity
+            android:name=".ViewerActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+            android:exported="false" />
+
+        <activity
+            android:name=".ProtectedAppsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".PermissionsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".FilePickActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:theme="@style/Theme.EasyConnect.Transparent" />
+
+        <!-- Tətbiq daxilində seçilən dil (Android 12 və köhnə versiyalar üçün yadda saxlanır) -->
+        <service
+            android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"
+            android:enabled="false"
+            android:exported="false">
+            <meta-data
+                android:name="autoStoreLocales"
+                android:value="true" />
+        </service>
+
+        <service
+            android:name=".ScreenShareService"
+            android:exported="false"
+            android:foregroundServiceType="mediaProjection" />
+    </application>
+</manifest>

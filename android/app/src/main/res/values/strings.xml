@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Default (English). Azerbaijani: values-az, Russian: values-ru -->
+<resources>
+    <string name="app_name">EasyConnect</string>
+    <string name="tagline">Share your phone screen securely or view another screen</string>
+    <string name="scan_qr">Share my screen — scan QR</string>
+    <string name="view_other_phone">View another phone\'s screen</string>
+    <string name="scan_prompt">Scan the EasyConnect QR code shown on the computer or the other phone</string>
+    <string name="idle_title">Ready</string>
+    <string name="idle_text">To share your screen, scan the QR code shown on the computer (EasyConnect → "App") or on another phone ("View another phone\'s screen").</string>
+    <string name="cancel">Cancel</string>
+    <string name="share_cancelled">Sharing cancelled.</string>
+    <string name="stop_current_first">Stop the current sharing session first.</string>
+
+    <string name="consent_title">Share your screen?</string>
+    <string name="consent_details">%1$s · code %2$s</string>
+    <string name="consent_allow">Allow</string>
+    <string name="consent_deny">Deny</string>
+    <string name="perms_choose">WHAT DO YOU ALLOW?</string>
+    <string name="perms_live_title">PERMISSIONS (change any time)</string>
+    <string name="perm_view">View the screen</string>
+    <string name="perm_control">Control the phone (touch, swipe, back/home)</string>
+    <string name="perm_keyboard">Type with the keyboard (except password fields)</string>
+    <string name="always_protected">ALWAYS PROTECTED</string>
+    <string name="consent_point_secure">When banking, payment or password apps open, the video stops and control is blocked. Only you can allow them on this phone.</string>
+    <string name="consent_point_data">Files, photos, messages, contacts and passwords cannot be taken. Settings, permission screens and this app can\'t be controlled remotely.</string>
+    <string name="consent_point_lock">Sharing pauses when the phone locks; the lock screen is never shown.</string>
+    <string name="consent_point_stop">You can pause or stop from the notification at any time.</string>
+    <string name="consent_point_encrypt">The connection is encrypted and goes only to this device.</string>
+
+    <string name="a11y_description">EasyConnect: only during a sharing session you allowed, performs the other side\'s touches and text on this phone. Recognizes and hides banking and other protected apps. It doesn\'t read screen content or send it anywhere.</string>
+    <string name="a11y_needed">To allow control, turn on the "EasyConnect" service in Accessibility settings.</string>
+    <string name="a11y_open">Open settings</string>
+    <string name="a11y_view_only">Continue with view only</string>
+    <string name="a11y_dialog_title">Turn on the control service</string>
+    <string name="a11y_dialog_text">Remote control requires turning on the EasyConnect service in Android once:\n\n1. Settings → Accessibility → Downloaded apps → EasyConnect\n2. Turn it on and confirm.\n\nIf the switch is greyed out (the app isn\'t from the Play Store): Settings → Apps → EasyConnect → ⋮ at the top right → "Allow restricted settings", then try again.\n\nThe service only acts during a sharing session you allowed.</string>
+
+    <string name="status_connecting">Connecting…</string>
+    <string name="status_connecting_text">Setting up an encrypted connection with %1$s.</string>
+    <string name="status_sharing">Screen is being shared</string>
+    <string name="status_sharing_text">%1$s can see your screen (view only).</string>
+    <string name="status_sharing_control_text">%1$s can see and control your screen.</string>
+    <string name="status_paused">Paused</string>
+    <string name="status_failed">Failed</string>
+    <string name="status_ended">Sharing ended</string>
+
+    <string name="stop_sharing">Stop sharing</string>
+    <string name="pause_sharing">Pause</string>
+    <string name="resume_sharing">Resume</string>
+
+    <string name="notif_channel">Screen sharing</string>
+    <string name="notif_channel_protected">Protected apps</string>
+    <string name="notif_title">Your screen is being shared</string>
+    <string name="notif_text">%1$s can see your screen (view only).</string>
+    <string name="notif_text_control">%1$s can see and control your screen.</string>
+    <string name="notif_paused">Paused — %1$s sees nothing.</string>
+    <string name="protected_title">%1$s hidden</string>
+    <string name="protected_text">This is a protected app. %1$s can\'t see or control it. Show it? (Control stays blocked.)</string>
+    <string name="protected_remote_title">Remote attempt to open %1$s</string>
+    <string name="protected_remote_text">%1$s tried to open a protected app. It was closed and nothing was shown.</string>
+    <string name="protected_show">Show this time</string>
+    <string name="protected_keep">Keep hidden</string>
+
+    <string name="protected_apps_title">Protected apps</string>
+    <string name="protected_apps_hint">When a checked app opens during sharing, the video stops and control is blocked. Banking and payment apps are checked automatically. (Requires the Accessibility service.)</string>
+
+    <string name="viewer_title">View another phone\'s screen</string>
+    <string name="viewer_subtitle">Scan this QR code with EasyConnect on the other phone.</string>
+    <string name="viewer_steps">1. Both phones on the same Wi-Fi (or one connected to the other\'s hotspot).\n2. On the other phone: EasyConnect → "Share my screen — scan QR".\n3. That phone\'s owner chooses what to allow.</string>
+    <string name="viewer_qr_status">code %1$s · %2$s</string>
+    <string name="viewer_no_network">This phone isn\'t on any local network. Connect to Wi-Fi or turn on the hotspot, then tap "New QR".</string>
+    <string name="viewer_server_failed">Could not start the server: %1$s</string>
+    <string name="new_qr">New QR</string>
+    <string name="viewer_waiting">%1$s connected. Waiting for video…</string>
+    <string name="viewer_locked">The phone is locked — the lock screen is not shown.</string>
+    <string name="viewer_protected">A protected app is open (e.g. banking). It isn\'t shown without the phone owner\'s permission.</string>
+    <string name="viewer_paused">Sharing is paused.</string>
+    <string name="viewer_ended">Sharing ended.</string>
+    <string name="viewer_type_hint">Type text…</string>
+    <string name="viewer_send">Send</string>
+    <string name="perm_view_only">View only</string>
+    <string name="perm_control_keyboard">Control + keyboard enabled</string>
+    <string name="perm_control_only">Control enabled</string>
+    <string name="perm_keyboard_only">Keyboard only</string>
+    <string name="perm_not_ready">Control is allowed, but the service isn\'t on for that phone</string>
+    <string name="perm_blocked_protected">Protected app — control blocked</string>
+    <string name="perm_blocked_system">Settings/permission screen — control blocked</string>
+    <string name="perm_blocked_locked">The phone is locked</string>
+    <string name="perm_blocked_other">Control temporarily blocked</string>
+
+    <string name="link_not_easyconnect">This isn\'t an EasyConnect QR code.</string>
+    <string name="link_version">This QR code is for a different app version. Update the app.</string>
+    <string name="link_no_host">The QR code has no address.</string>
+    <string name="link_not_local">Security: you can only connect to a device on the local network.</string>
+    <string name="link_bad_port">The QR code has an invalid port.</string>
+    <string name="link_damaged">The QR code is damaged.</string>
+    <string name="share_no_permission">Screen sharing permission was not granted.</string>
+    <string name="share_qr_expired">The QR code has expired or was already used. Create a new QR and scan again.</string>
+    <string name="share_lost">Connection lost.</string>
+    <string name="share_encoder_error">Video encoder error: %1$s</string>
+    <string name="share_remote_closed">The other side closed the session.</string>
+    <string name="share_stopped">Sharing stopped.</string>
+    <string name="pause_locked">Phone is locked — no video is sent.</string>
+    <string name="pause_protected">Protected app open — video hidden.</string>
+    <string name="pause_user">Paused — the other side sees nothing.</string>
+    <string name="err_identity">Security: the other side\'s identity doesn\'t match the QR code, so we didn\'t connect. Only scan QR codes from your own devices.</string>
+    <string name="err_tls">Could not establish an encrypted connection. Create a new QR.</string>
+    <string name="err_unreachable">Could not connect (%1$s). If the other side changed networks, create a new QR and scan again. Both devices must be on the same Wi-Fi (or hotspot).</string>
+    <string name="err_generic">Connection error: %1$s</string>
+    <string name="remote_party">The other side</string>
+    <string name="key_back">Back</string>
+    <string name="key_home">Home</string>
+    <string name="key_recents">Recent apps</string>
+    <string name="key_keyboard">Keyboard</string>
+    <string name="key_close">Close</string>
+    <string name="language">Language</string>
+    <string name="lite_note">This version is view-only. To control the phone from a computer, use Developer mode (scrcpy) or the Google Play version of EasyConnect.</string>
+    <string name="consent_point_secure_lite">Banking and payment apps hide their own screens (they appear black). Nothing can be controlled remotely in this version.</string>
+    <string name="perm_audio">Phone sound (music, video, games — not the microphone)</string>
+    <string name="perm_files">Send and receive files (Downloads/EasyConnect)</string>
+    <string name="perms_title">Permissions</string>
+    <string name="perms_live_hint">Change what the other side may do. This screen can\'t be controlled remotely.</string>
+    <string name="perms_change">Change permissions</string>
+    <string name="files_send">Send a file to the other side</string>
+    <string name="files_sending">Sending %1$d file(s)…</string>
+    <string name="files_not_allowed">File transfer is not allowed in this session.</string>
+    <string name="files_request_title">%1$s wants a file</string>
+    <string name="files_request_text">Tap to choose which file to send.</string>
+    <string name="files_received_title">File received</string>
+    <string name="files_received_text">%1$s → Downloads/EasyConnect</string>
+    <string name="key_more">More</string>
+    <string name="key_mute">Mute sound</string>
+    <string name="key_vol_down">Volume down</string>
+    <string name="key_vol_up">Volume up</string>
+    <string name="key_ringer">Ringer mode</string>
+    <string name="key_quick">Quick settings</string>
+</resources>

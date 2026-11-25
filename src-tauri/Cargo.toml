@@ -1,0 +1,34 @@
+[package]
+name = "easyconnect"
+version = "0.6.0"
+description = "EasyConnect - telefonu kompüterə bir kliklə qoşmaq (scrcpy əsasında)"
+edition = "2021"
+rust-version = "1.80"
+
+[lib]
+name = "easyconnect_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-opener = "2"
+tauri-plugin-dialog = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+qrcode = { version = "0.14", default-features = false, features = ["svg"] }
+rand = "0.8"
+mdns-sd = "0.13"
+# Asan rejim (telefon tətbiqi ilə TLS əlaqəsi)
+rustls = { version = "0.23", default-features = false, features = ["ring", "std", "tls12"] }
+rcgen = { version = "0.13", default-features = false, features = ["crypto", "ring", "pem"] }
+ring = "0.17"
+if-addrs = "0.13"
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "s"
+strip = true

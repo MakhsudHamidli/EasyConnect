@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/app_name"
+            android:textColor="@color/text"
+            android:textSize="26sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="@string/tagline"
+            android:textColor="@color/muted"
+            android:textSize="14sp" />
+
+        <!-- Vəziyyət + paylaşım zamanı icazələr -->
+        <LinearLayout
+            android:id="@+id/statusCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_bg"
+            android:orientation="vertical"
+            android:padding="18dp">
+
+            <TextView
+                android:id="@+id/statusTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/idle_title"
+                android:textColor="@color/text"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/statusText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/idle_text"
+                android:textColor="@color/muted"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:id="@+id/livePerms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <Button
+                    android:id="@+id/permsBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:background="@drawable/btn_outline"
+                    android:text="@string/perms_change"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text" />
+
+                <Button
+                    android:id="@+id/sendFileBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/btn_outline"
+                    android:text="@string/files_send"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/a11yWarning"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/a11y_needed"
+                android:textColor="@color/warn"
+                android:textSize="13sp"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/a11yBtn"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/btn_outline"
+                android:text="@string/a11y_open"
+                android:textAllCaps="false"
+                android:textColor="@color/text"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/activeButtons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <Button
+                    android:id="@+id/pauseBtn"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_outline"
+                    android:text="@string/pause_sharing"
+                    android:textAllCaps="false"
+                    android:textColor="@color/text" />
+
+                <Button
+                    android:id="@+id/stopBtn"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_outline"
+                    android:text="@string/stop_sharing"
+                    android:textAllCaps="false"
+                    android:textColor="@color/err" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Razılıq: sahib nəyə icazə verəcəyini seçir -->
+        <LinearLayout
+            android:id="@+id/consentCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/card_bg"
+            android:orientation="vertical"
+            android:padding="18dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/consent_title"
+                android:textColor="@color/text"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/consentPc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/text"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/consentDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="monospace"
+                android:textColor="@color/muted"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/perms_choose"
+                android:textColor="@color/muted"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <CheckBox
+                android:id="@+id/permView"
+                style="@style/PermBox"
+                android:checked="true"
+                android:enabled="false"
+                android:text="@string/perm_view" />
+
+            <TextView
+                android:id="@+id/liteNote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/lite_note"
+                android:textColor="@color/muted"
+                android:textSize="13sp"
+                android:visibility="gone" />
+
+            <CheckBox
+                android:id="@+id/permControl"
+                style="@style/PermBox"
+                android:text="@string/perm_control" />
+
+            <CheckBox
+                android:id="@+id/permKeyboard"
+                style="@style/PermBox"
+                android:text="@string/perm_keyboard" />
+
+            <CheckBox
+                android:id="@+id/permAudio"
+                style="@style/PermBox"
+                android:text="@string/perm_audio" />
+
+            <CheckBox
+                android:id="@+id/permFiles"
+                style="@style/PermBox"
+                android:text="@string/perm_files" />
+
+            <TextView
+                android:id="@+id/consentA11y"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/a11y_needed"
+                android:textColor="@color/warn"
+                android:textSize="13sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/always_protected"
+                android:textColor="@color/muted"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView android:id="@+id/pointSecure" style="@style/ConsentPoint" android:text="@string/consent_point_secure" />
+            <TextView style="@style/ConsentPoint" android:text="@string/consent_point_data" />
+            <TextView style="@style/ConsentPoint" android:text="@string/consent_point_lock" />
+            <TextView style="@style/ConsentPoint" android:text="@string/consent_point_stop" />
+            <TextView style="@style/ConsentPoint" android:text="@string/consent_point_encrypt" />
+
+            <Button
+                android:id="@+id/allowBtn"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/btn_primary"
+                android:filterTouchesWhenObscured="true"
+                android:text="@string/consent_allow"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/denyBtn"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/btn_outline"
+                android:text="@string/consent_deny"
+                android:textAllCaps="false"
+                android:textColor="@color/text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/homeButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/scanBtn"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/btn_primary"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:text="@string/scan_qr"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp" />
+
+            <Button
+                android:id="@+id/viewBtn"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_outline"
+                android:text="@string/view_other_phone"
+                android:textAllCaps="false"
+                android:textColor="@color/text"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/protectedBtn"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/btn_outline"
+            android:text="@string/protected_apps_title"
+            android:textAllCaps="false"
+            android:textColor="@color/text" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="@string/language"
+                android:textColor="@color/muted"
+                android:textSize="13sp" />
+
+            <Button android:id="@+id/langAz" style="@style/LangButton" android:text="AZ" />
+            <Button android:id="@+id/langRu" style="@style/LangButton" android:text="RU" />
+            <Button android:id="@+id/langEn" style="@style/LangButton" android:text="EN" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

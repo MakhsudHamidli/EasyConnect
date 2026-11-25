@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Yalnız "full" versiya (Google Play): uzaqdan idarə üçün Accessibility xidməti.
+  "lite" versiyada bu xidmət YOXDUR — Play Protect Play-dən kənar quraşdırmanı bloklamır.
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application>
+        <!-- Uzaqdan idarə. Yalnız sistem bağlana bilər (BIND_ACCESSIBILITY_SERVICE). -->
+        <service
+            android:name=".ControlService"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_config" />
+        </service>
+    </application>
+</manifest>

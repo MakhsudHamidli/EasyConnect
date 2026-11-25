@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Tauri bunu avtomatik olaraq .app-in Info.plist faylına birləşdirir (yalnız macOS). -->
+<plist version="1.0">
+<dict>
+    <!-- macOS 15+: Wi-Fi-dakı telefonları tapmaq və onlara qoşulmaq üçün "Yerli şəbəkə" icazəsi -->
+    <key>NSLocalNetworkUsageDescription</key>
+    <string>EasyConnect connects to your phone over the local network (Wi-Fi or the phone's hotspot) to show and control its screen.</string>
+    <!-- QR ilə Wireless debugging pairing zamanı axtarılan mDNS xidmətləri -->
+    <key>NSBonjourServices</key>
+    <array>
+        <string>_adb-tls-pairing._tcp</string>
+        <string>_adb-tls-connect._tcp</string>
+    </array>
+</dict>
+</plist>

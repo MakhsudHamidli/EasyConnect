@@ -1,0 +1,7 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "Main window and phone viewer windows",
+  "windows": ["main", "viewer-*"],
+  "permissions": ["core:default", "core:window:allow-set-size", "core:window:allow-close"]
+}

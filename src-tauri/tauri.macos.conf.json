@@ -1,0 +1,12 @@
+{
+  "bundle": {
+    "targets": ["app", "dmg"],
+    "resources": {
+      "resources/scrcpy/macos/*": "scrcpy/"
+    },
+    "macOS": {
+      "minimumSystemVersion": "11.0",
+      "signingIdentity": "-"
+    }
+  }
+}

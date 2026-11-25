@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="az">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EasyConnect</title>
+  <style>
+    :root { --bg: #0e0f12; --bar: rgb(23 25 30 / .94); --text: #e8eaef; --muted: #9298a6; --accent: #5b8ff9; --warn: #e0a33a; --ok: #3cc583; --border: #2a2e37; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text);
+      font: 13px/1.4 "Segoe UI", -apple-system, system-ui, sans-serif; overflow: hidden; }
+
+    /* Panel gizlidir; siçan yuxarı kənara gələndə görünür (scrcpy kimi təmiz görüntü) */
+    .bar { position: fixed; top: 0; left: 0; right: 0; z-index: 5; display: flex; align-items: center; gap: 6px;
+      padding: 6px 8px; background: var(--bar); border-bottom: 1px solid var(--border); min-height: 40px;
+      transform: translateY(-100%); transition: transform .18s ease; backdrop-filter: blur(6px); }
+    .bar.show { transform: translateY(0); }
+    .hot { position: fixed; top: 0; left: 0; right: 0; height: 10px; z-index: 4; }
+    .pill { font-size: 11px; padding: 2px 8px; border-radius: 99px; border: 1px solid var(--border);
+      color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; flex: 1 1 auto; }
+    .pill.ok { color: var(--ok); } .pill.warn { color: var(--warn); }
+    .bar button { flex: 0 0 auto; height: 28px; min-width: 30px; border-radius: 7px; border: 1px solid var(--border);
+      background: transparent; color: var(--text); cursor: pointer; display: grid; place-items: center; padding: 0 6px; font: inherit; }
+    .bar button:hover:not(:disabled) { border-color: var(--accent); }
+    .bar button:disabled { opacity: .35; cursor: default; }
+    .bar button.accent { border-color: var(--accent); color: var(--accent); font-weight: 600; font-size: 12px; }
+    .bar button[hidden] { display: none; }
+    .bar svg { width: 16px; height: 16px; }
+
+    .stage { position: fixed; inset: 0; }
+    canvas { display: block; width: 100%; height: 100%; object-fit: contain; outline: none; }
+    canvas.control { cursor: crosshair; }
+    .overlay { position: absolute; inset: 0; display: grid; place-items: center; text-align: center;
+      padding: 24px; background: rgb(14 15 18 / .9); }
+    .overlay[hidden] { display: none; }
+    .overlay b { display: block; font-size: 15px; margin-bottom: 6px; }
+    .overlay span { color: var(--muted); }
+    .overlay.warn b { color: var(--warn); }
+    .spinner { width: 26px; height: 26px; margin: 0 auto 12px; border-radius: 50%;
+      border: 3px solid var(--accent); border-right-color: transparent; animation: spin .8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .bar { flex-wrap: wrap; }
+    .bar .sep { width: 1px; align-self: stretch; background: var(--border); margin: 2px 2px; }
+    .bar svg[hidden] { display: none; }
+    .drop { position: fixed; inset: 10px; z-index: 6; border: 2px dashed var(--accent); border-radius: 14px;
+      background: rgb(14 15 18 / .82); display: grid; place-items: center; font-size: 16px; pointer-events: none; }
+    .drop[hidden] { display: none; }
+    .vtoasts { position: fixed; right: 10px; bottom: 10px; z-index: 7; display: flex; flex-direction: column; gap: 6px;
+      max-width: min(360px, calc(100vw - 20px)); }
+    .vtoast { background: #1d2027; border: 1px solid var(--border); border-left: 3px solid var(--accent);
+      padding: 8px 12px; border-radius: 8px; font-size: 12px; box-shadow: 0 6px 18px rgb(0 0 0 / .4); word-break: break-word; }
+    .vtoast.ok { border-left-color: var(--ok); } .vtoast.err { border-left-color: #ef6b6b; }
+    .vtoast a { color: var(--accent); cursor: pointer; text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <canvas id="screen" tabindex="0"></canvas>
+    <div id="overlay" class="overlay">
+      <div><div class="spinner" id="spinner"></div><b id="ovTitle"></b><span id="ovText"></span></div>
+    </div>
+  </div>
+  <div class="hot" id="hot"></div>
+  <div class="bar" id="bar">
+    <span class="pill" id="permPill"></span>
+    <button id="btnScrcpy" class="accent" hidden data-i18n="v.scrcpy" data-i18n-title="v.scrcpyTitle"></button>
+    <button data-key="back" data-i18n-title="v.back" disabled>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+    <button data-key="home" data-i18n-title="v.home" disabled>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="7"/></svg></button>
+    <button data-key="recents" data-i18n-title="v.recents" disabled>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="6" width="12" height="12" rx="2"/></svg></button>
+    <button data-key="notifications" data-i18n-title="v.notifications" disabled>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10 21h4"/></svg></button>
+    <button data-key="quicksettings" data-i18n-title="v.quicksettings" disabled>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg></button>
+    <span class="sep"></span>
+    <button id="btnMute" data-i18n-title="v.mute" disabled>
+      <svg id="icoSound" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+      <svg id="icoMuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" hidden><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m22 9-6 6M16 9l6 6"/></svg></button>
+    <button data-vol="down" data-i18n-title="v.volDown" disabled>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15 12h6"/></svg></button>
+    <button data-vol="up" data-i18n-title="v.volUp" disabled>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15 12h6M18 9v6"/></svg></button>
+    <button id="btnRinger" data-i18n-title="v.ringer" disabled>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M3 9v6M21 9v6"/></svg></button>
+    <span class="sep"></span>
+    <button id="btnSendFile" data-i18n-title="v.sendFile" disabled>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg></button>
+    <button id="btnGetFile" data-i18n-title="v.getFile" disabled>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M7 11l5 5 5-5"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg></button>
+    <button id="btnFolder" data-i18n-title="v.openFolder">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 6a1 1 0 0 1 1-1h5l2 2h9a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/></svg></button>
+  </div>
+  <div class="drop" id="drop" hidden><b data-i18n="v.dropHere"></b></div>
+  <div class="vtoasts" id="vtoasts"></div>
+  <script src="i18n.js"></script>
+  <script src="viewer.js"></script>
+</body>
+</html>
